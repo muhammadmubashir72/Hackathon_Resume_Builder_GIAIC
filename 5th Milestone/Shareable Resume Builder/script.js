@@ -1,112 +1,64 @@
-// Get form and output container elements
-const inputField = document.querySelector(".input-fields");
-const outputContainer = document.querySelector(".output_container");
-const form = document.getElementById('cv-form');
-let isHidden = true;
+function generateCV() {
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const address = document.getElementById('address').value;
+    const personalInfo = document.getElementById('personal-info').value;
+    const education = document.getElementById('education').value;
+    const experience = document.getElementById('experience').value;
+    const skills = document.getElementById('skills').value;
+    const certifications = document.getElementById('certifications').value;
 
-// Function to validate form
-function validateForm() {
-    const inputs = form.querySelectorAll('input, textarea');
-    const inputsArray = Array.from(inputs);
-    for (const input of inputsArray) {
-        if (!input.value.trim()) {
-            alert('Please fill in all fields.');
-            return false;
-        }
-    }
-    return true;
-}
-
-// Function to generate the shareable link
-function generateShareableLink() {
-    const formData = new FormData(form);
-    const params = new URLSearchParams();
-
-    for (const [key, value] of formData.entries()) {
-        params.append(key, value);
-    }
-
-    return `https://shareable-resume-builder-ubaid.vercel.app/resume-viewer.html?${params.toString()}`;
-}
-
-// Function to preview the CV
-function preview() {
-    if (!validateForm()) return;
-
-    const data = new FormData(form);
-    const output = `
-        <div class="output">
-            <div class="heading">
-                <h1>${data.get('name')}</h1>
-                <h4>${data.get('title')}</h4>
-            </div>
-            <div class="info">
-                <div class="box">
-                    <h2>Objective</h2>
-                    <p>${data.get('objective')}</p>
-                    <h2>Skills</h2>
-                    <p>${data.get('skills')}</p>
-                    <h2>Academic Details</h2>
-                    <p>${data.get('academic_details')}</p>
-                    <h2>Contact</h2>
-                    <p>${data.get('contact')}</p>
-                </div>
-                <div class="box">
-                    <h2>Work Experience</h2>
-                    <p>${data.get('work_experience')}</p>
-                    <h2>Achievements</h2>
-                    <p>${data.get('achievements')}</p>
-                    <h2>Projects</h2>
-                    <p>${data.get('projects')}</p>
-                </div>
-            </div>
-            <div class="btn">
-                <button onclick="downloadPDF()">Download PDF</button>
-                <button onclick="copyShareableLink()">Copy Shareable Link</button>
-            </div>
-            <div class="created-by">
-                <p>Created by Muhammad Mubashir Saeedi</p>
+    // Fill in the resume container with user inputs
+    const resumeContent = `
+        <div class="resume-header">
+            <div class="header-content">
+                <h1>${firstName} ${lastName}</h1>
+                <p>Phone: ${phone}</p>
+                <p>Email: ${email}</p>
+                <p>Address: ${address}</p>
             </div>
         </div>
+        <div class="resume-section">
+            <h2>Personal Information</h2>
+            <p>${personalInfo}</p>
+        </div>
+        <div class="resume-section">
+            <h2>Education</h2>
+            <p>${education}</p>
+        </div>
+        <div class="resume-section">
+            <h2>Experience</h2>
+            <p>${experience}</p>
+        </div>
+        <div class="resume-section">
+            <h2>Skills</h2>
+            <p>${skills}</p>
+        </div>
+        <div class="resume-section">
+            <h2>Certifications</h2>
+            <p>${certifications}</p>
+        </div>
     `;
-
-    // Toggle view
-    inputField.style.display = "none";
-    outputContainer.style.display = "block";
-    outputContainer.innerHTML = output;
-    isHidden = false;
+    document.getElementById('resume-container').innerHTML = resumeContent;
+    document.getElementById('resume-container').style.display = 'block';
 }
 
-// Function to download CV as PDF
 function downloadPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    const resumeContent = outputContainer.innerText;
-
-    doc.text(resumeContent, 10, 10);
-    doc.save('resume.pdf');
+    const resumeContainer = document.getElementById('resume-container');
+    const opt = {
+        margin: 1,
+        filename: 'resume.pdf',
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(resumeContainer).save();
 }
 
-// Function to copy the shareable link to clipboard
-function copyShareableLink() {
-    const link = generateShareableLink();
-    navigator.clipboard.writeText(link).then(() => {
-        alert('Shareable link copied to clipboard!');
-    }, () => {
-        alert('Failed to copy shareable link.');
-    });
+function copyLink() {
+    const link = "http://example.com/your-resume-link"; // Replace with actual link
+    navigator.clipboard.writeText(link)
+        .then(() => alert("Shareable link copied!"))
+        .catch(err => console.error("Failed to copy link: ", err));
 }
-
-// Function to reset the form and show the input fields
-function createNewResume() {
-    form.reset();
-    inputField.style.display = "block";
-    outputContainer.style.display = "none";
-    isHidden = true;
-}
-
-// Assign functions to the `window` object to make them globally accessible
-window.preview = preview;
-window.downloadPDF = downloadPDF;
-window.copyShareableLink = copyShareableLink;
-window.createNewResume = createNewResume;

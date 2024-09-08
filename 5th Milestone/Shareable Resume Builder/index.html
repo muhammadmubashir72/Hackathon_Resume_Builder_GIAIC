@@ -3,60 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic CV Creator</title>
+    <title>Resume Creator</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.6.0/jspdf.umd.min.js"></script>
+    <!-- Include html2pdf CDN for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <header class="hero">
-            <h1>Dynamic Resume Builder & Editor</h1>
-            <p>Created by Muhammad Mubashir Saeedi</p>
-        </header>
+    <div class="form-container">
+        <h1>Create Your Resume</h1>
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" placeholder="Enter your first name">
 
-        <section class="input-fields">
-            <h2>Enter Your Details</h2>
-            <form id="cv-form">
-                <!-- Form fields -->
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" placeholder="Enter your last name">
 
-                <label for="title">Title:</label>
-                <input type="text" id="title" name="title" required>
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" placeholder="Enter your phone number">
 
-                <label for="objective">Objective:</label>
-                <textarea id="objective" name="objective" rows="3" required></textarea>
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" placeholder="Enter your email address">
 
-                <label for="skills">Skills:</label>
-                <textarea id="skills" name="skills" rows="3" required></textarea>
+        <label for="address">Address:</label>
+        <input type="text" id="address" placeholder="Enter your address">
 
-                <label for="academic_details">Academic Details:</label>
-                <textarea id="academic_details" name="academic_details" rows="3" required></textarea>
+        <label for="personal-info">Personal Information:</label>
+        <textarea id="personal-info" placeholder="Enter your personal details"></textarea>
 
-                <label for="contact">Contact:</label>
-                <input type="text" id="contact" name="contact" required>
+        <label for="education">Education:</label>
+        <textarea id="education" placeholder="Enter your education details"></textarea>
 
-                <label for="work_experience">Work Experience:</label>
-                <textarea id="work_experience" name="work_experience" rows="3" required></textarea>
+        <label for="experience">Experience:</label>
+        <textarea id="experience" placeholder="Enter your experience details"></textarea>
 
-                <label for="achievements">Achievements:</label>
-                <textarea id="achievements" name="achievements" rows="3" required></textarea>
+        <label for="skills">Skills:</label>
+        <textarea id="skills" placeholder="Enter your skills"></textarea>
 
-                <label for="projects">Projects:</label>
-                <textarea id="projects" name="projects" rows="3" required></textarea>
+        <label for="certifications">Certifications:</label>
+        <textarea id="certifications" placeholder="Enter your certifications"></textarea>
 
-                <div class="btn">
-                    <button type="button" onclick="preview()">Preview CV</button>
-                </div>
-            </form>
-        </section>
-
-        <section class="output_container">
-            <!-- Generated CV will be displayed here -->
-        </section>
+        <div class="buttons">
+            <button onclick="generateCV()">Generate CV</button>
+            <button onclick="downloadPDF()">Download PDF</button>
+            <button onclick="copyLink()">Copy Shareable Link</button>
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
+    <div id="resume-container" class="resume-container" style="display: none;">
+        <!-- Resume content will be generated here -->
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

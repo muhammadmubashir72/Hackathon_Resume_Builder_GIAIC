@@ -1,0 +1,130 @@
+/* styles.css */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #333;
+}
+
+[data-theme="dark"] {
+    --bg-color: #333;
+    --text-color: #f4f4f9;
+}
+
+.resume-header {
+    display: flex;
+    align-items: center;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 3px solid #0056b3;
+    margin-bottom: 20px;
+}
+
+.profile-container {
+    flex: 0 0 150px;
+    text-align: center;
+    margin-right: 20px;
+}
+
+#profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+
+.info-container {
+    flex: 1;
+}
+
+#name {
+    margin: 0 0 10px;
+    font-size: 36px;
+}
+
+#tagline {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+#contact, #linkedin {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.theme-toggle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.resume-container {
+    max-width: 800px;
+    margin: auto;
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.resume-section {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.resume-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #007BFF;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 5px;
+}
+
+.resume-section .content {
+    max-height: 0;
+    transition: max-height 0.5s ease;
+    overflow: hidden;
+}
+
+.resume-section.expanded .content {
+    max-height: 500px; /* Adjust as needed */
+}
+
+.resume-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    padding-left: 20px;
+}

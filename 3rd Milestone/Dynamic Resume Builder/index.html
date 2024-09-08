@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic CV Creator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>Dynamic CV Creator</h1>
+        </header>
+
+        <section class="input-fields">
+            <h2>Enter Your Details</h2>
+            <form id="cv-form">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="objective">Objective:</label>
+                <textarea id="objective" name="objective" rows="3" required></textarea>
+
+                <label for="skills">Skills:</label>
+                <textarea id="skills" name="skills" rows="3" required></textarea>
+
+                <label for="academic_details">Academic Details:</label>
+                <textarea id="academic_details" name="academic_details" rows="3" required></textarea>
+
+                <label for="contact">Contact:</label>
+                <input type="text" id="contact" name="contact" required>
+
+                <label for="work_experience">Work Experience:</label>
+                <textarea id="work_experience" name="work_experience" rows="3" required></textarea>
+
+                <label for="achievements">Achievements:</label>
+                <textarea id="achievements" name="achievements" rows="3" required></textarea>
+
+                <label for="projects">Projects:</label>
+                <textarea id="projects" name="projects" rows="3" required></textarea>
+
+                <div class="btn">
+                    <button type="button" onclick="preview()">Preview CV</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="output_container" style="display: none;">
+            <!-- Generated CV will be displayed here -->
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

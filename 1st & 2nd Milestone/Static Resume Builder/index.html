@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Resume</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="resume-header">
+        <div class="profile-container">
+            <img id="profile-pic" src="./mubashir.jpg" alt="Profile Picture">
+        </div>
+        <div class="info-container">
+            <h1 id="name">Muhammad Mubashir</h1>
+            <p id="tagline">Flutter & Front End Developer</p>
+            <p id="contact">Email: <span id="email">mubashirkhi72@gmail.com</span> | Phone: <span id="phone">+92 325 3570380</span></p>
+            <p id="linkedin">LinkedIn: <a id="linkedin-url" href="https://www.linkedin.com/in/muhammad-mubashir-saeedi" target="_blank">linkedin.com/in/muhammad-mubashir-saeedi</a></p>
+        </div>
+    </header>
+
+    <div class="theme-toggle">
+        <button id="toggle-theme">Switch to Dark Mode</button>
+    </div>
+
+    <div class="resume-container">
+        <section id="personal-info" class="resume-section">
+            <h2 onclick="toggleSection('personal-info')">Personal Information</h2>
+            <div class="content"></div>
+        </section>
+
+        <section id="education" class="resume-section">
+            <h2 onclick="toggleSection('education')">Education</h2>
+            <div class="content"></div>
+        </section>
+
+        <section id="experience" class="resume-section">
+            <h2 onclick="toggleSection('experience')">Experience</h2>
+            <div class="content"></div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="personalInfo.js"></script>
+    <script src="education.js"></script>
+    <script src="experience.js"></script>
+</body>
+</html>

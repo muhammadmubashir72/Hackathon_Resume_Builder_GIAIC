@@ -1,0 +1,146 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.hero {
+    background-color: #7d610efc;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.input-fields, .output_container {
+    margin: 20px auto;
+    max-width: 900px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-fields label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+.input-fields input, 
+.input-fields textarea {
+    width: calc(100% - 22px);
+    height: 40px;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input:focus, 
+textarea:focus {
+    outline: none;
+    border: 2px solid #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}
+
+.btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    width: 180px;
+    background-color: #720376e0;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #357abd;
+    transform: scale(1.05);
+}
+
+.output {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.output .heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.output .heading h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #333;
+}
+
+.output .heading h4 {
+    margin: 5px 0;
+    font-size: 18px;
+    color: #555;
+}
+
+.output .info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.output .info .box {
+    width: 45%;
+    margin-bottom: 20px;
+}
+
+.output .info .box h2 {
+    font-size: 20px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.output .info .box p {
+    font-size: 16px;
+    color: #666;
+}
+
+.output .btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.created-by {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .output .info .box {
+        width: 100%;
+    }
+}

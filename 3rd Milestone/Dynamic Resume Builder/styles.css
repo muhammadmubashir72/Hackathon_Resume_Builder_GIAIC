@@ -11,9 +11,13 @@ body {
     max-width: 1200px;
     margin: auto;
 }
+#name {
+    margin: 0 0 10px;
+    font-size: 36px;
+}
 
 .hero {
-    background-color: #7d610efc;
+    background-color: #cb960efc;
     color: white;
     text-align: center;
     padding: 20px;

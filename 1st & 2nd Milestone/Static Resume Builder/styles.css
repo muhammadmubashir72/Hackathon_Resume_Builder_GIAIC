@@ -128,3 +128,76 @@ button:hover {
     line-height: 1.6;
     padding-left: 20px;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .resume-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-container {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    #profile-pic {
+        width: 100px;
+        height: 100px;
+    }
+
+    .info-container {
+        text-align: center;
+    }
+
+    #name {
+        font-size: 28px;
+    }
+
+    #tagline {
+        font-size: 18px;
+    }
+
+    .resume-container {
+        padding: 15px;
+    }
+
+    .resume-section h2 {
+        font-size: 20px;
+    }
+
+    .resume-section p {
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    #name {
+        font-size: 24px;
+    }
+
+    #tagline {
+        font-size: 16px;
+    }
+
+    .resume-container {
+        padding: 10px;
+    }
+
+    .resume-section h2 {
+        font-size: 18px;
+    }
+
+    .resume-section p {
+        font-size: 14px;
+    }
+
+    button {
+        padding: 12px;
+    }
+}

@@ -1,64 +1,104 @@
-function generateCV() {
-    const firstName = document.getElementById('first-name').value;
-    const lastName = document.getElementById('last-name').value;
-    const phone = document.getElementById('phone').value;
-    const email = document.getElementById('email').value;
-    const address = document.getElementById('address').value;
-    const personalInfo = document.getElementById('personal-info').value;
-    const education = document.getElementById('education').value;
-    const experience = document.getElementById('experience').value;
-    const skills = document.getElementById('skills').value;
-    const certifications = document.getElementById('certifications').value;
 
-    // Fill in the resume container with user inputs
-    const resumeContent = `
-        <div class="resume-header">
-            <div class="header-content">
-                <h1>${firstName} ${lastName}</h1>
-                <p>Phone: ${phone}</p>
-                <p>Email: ${email}</p>
-                <p>Address: ${address}</p>
-            </div>
-        </div>
-        <div class="resume-section">
-            <h2>Personal Information</h2>
-            <p>${personalInfo}</p>
-        </div>
-        <div class="resume-section">
-            <h2>Education</h2>
-            <p>${education}</p>
-        </div>
-        <div class="resume-section">
-            <h2>Experience</h2>
-            <p>${experience}</p>
-        </div>
-        <div class="resume-section">
-            <h2>Skills</h2>
-            <p>${skills}</p>
-        </div>
-        <div class="resume-section">
-            <h2>Certifications</h2>
-            <p>${certifications}</p>
-        </div>
+const form = document.getElementById("resume-form") as HTMLFormElement;
+const resumeDisplayElement = document.getElementById("resume-display") as HTMLDivElement;
+const shareableLinkContainer = document.getElementById("shareable-link-container") as HTMLDivElement;
+const shareableLinkElement = document.getElementById("shareable-link") as HTMLAnchorElement;
+const downloadPdfButton = document.getElementById("download-pdf") as HTMLButtonElement;
+
+
+form.addEventListener("submit", (event: Event) => {
+  event.preventDefault(); 
+
+  
+  const profilePictureInput = document.getElementById("profile-picture") as HTMLInputElement;
+  const username = (document.getElementById("username") as HTMLInputElement).value;
+  const name = (document.getElementById("name") as HTMLInputElement).value;
+  const email = (document.getElementById("email") as HTMLInputElement).value;
+  const phone = (document.getElementById("phone") as HTMLInputElement).value;
+  const DateOfBirth = (document.getElementById("DateOfBirth") as HTMLInputElement).value;
+  const education = (document.getElementById("education") as HTMLTextAreaElement).value;
+  const experience = (document.getElementById("experience") as HTMLTextAreaElement).value;
+  const skills = (document.getElementById("skills") as HTMLTextAreaElement).value;
+
+
+  const resumeData = {
+    name,
+    email,
+    phone,
+    DateOfBirth,
+    education,
+    experience,
+    skills,
+  };
+  localStorage.setItem(username, JSON.stringify(resumeData)); 
+
+  
+  const displayResume = (profileImageSrc: string | null) => {
+    const resumeHTML = `
+      <h2>Editable Resume</h2>
+      <h3>Personal Information</h3>
+      ${profileImageSrc ? `<img src="${profileImageSrc}" alt="Profile Picture" style="width:150px; height:150px; object-fit:cover;" />` : ""}
+      <p><b>Name:</b> <span contenteditable="true">${name}</span></p>
+      <p><b>Email:</b> <span contenteditable="true">${email}</span></p>
+      <p><b>Phone:</b> <span contenteditable="true">${phone}</span></p>
+      <p><b>Date Of Birth:</b> <span contenteditable="true">${DateOfBirth}</span></p>
+      
+      <h3>Education:</h3>
+      <p contenteditable:="true">${education}</p>
+      
+      <h3>Experience</h3>
+      <p contenteditable:="true">${experience}</p>
+      
+      <h3>Skills</h3>
+      <p contenteditable:="true">${skills}</p>
     `;
-    document.getElementById('resume-container').innerHTML = resumeContent;
-    document.getElementById('resume-container').style.display = 'block';
-}
 
-function downloadPDF() {
-    const resumeContainer = document.getElementById('resume-container');
-    const opt = {
-        margin: 1,
-        filename: 'resume.pdf',
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    
+    resumeDisplayElement.innerHTML = resumeHTML;
+  };
+
+  
+  if (profilePictureInput && profilePictureInput.files && profilePictureInput.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      displayResume(e.target?.result as string); 
     };
-    html2pdf().set(opt).from(resumeContainer).save();
-}
+    reader.readAsDataURL(profilePictureInput.files[0]);
+  } else {
+    displayResume(null); 
+  }
 
-function copyLink() {
-    const link = "http://example.com/your-resume-link"; // Replace with actual link
-    navigator.clipboard.writeText(link)
-        .then(() => alert("Shareable link copied!"))
-        .catch(err => console.error("Failed to copy link: ", err));
-}
+
+  const shareableURL = `${window.location.origin}?username=${encodeURIComponent(username)}`;
+  
+  shareableLinkContainer.style.display = "block";
+  shareableLinkElement.href = shareableURL;
+  shareableLinkElement.textContent = shareableURL;
+});
+
+
+downloadPdfButton.addEventListener("click", () => {
+  window.print(); 
+});
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const username = urlParams.get("username");
+
+  if (username) {
+    
+    const savedResumeData = localStorage.getItem(username);
+    if (savedResumeData) {
+      const resumeData = JSON.parse(savedResumeData);
+      (document.getElementById("username") as HTMLInputElement).value = username;
+      (document.getElementById("name") as HTMLInputElement).value = resumeData.name;
+      (document.getElementById("email") as HTMLInputElement).value = resumeData.email;
+      (document.getElementById("phone") as HTMLInputElement).value = resumeData.phone;
+      (document.getElementById("DateOfBirth") as HTMLInputElement).value = resumeData.DateOfBirth;
+      (document.getElementById("education") as HTMLTextAreaElement).value = resumeData.education;
+      (document.getElementById("experience") as HTMLTextAreaElement).value = resumeData.experience;
+      (document.getElementById("skills") as HTMLTextAreaElement).value = resumeData.skills;
+    }
+  }
+});

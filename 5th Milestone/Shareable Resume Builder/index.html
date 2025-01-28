@@ -1,55 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Creator</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Include html2pdf CDN for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-</head>
-<body>
-    <div class="form-container">
-        <h1>Create Your Resume</h1>
-        <label for="first-name">First Name:</label>
-        <input type="text" id="first-name" placeholder="Enter your first name">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shareable Resume Builder</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Shareable Resume Builder by Mubashir Saeedi</h1>
+    <form id="resume-form">
+      <fieldset>
+        <legend>Personal Information</legend>
 
-        <label for="last-name">Last Name:</label>
-        <input type="text" id="last-name" placeholder="Enter your last name">
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Enter your username.."
+          required
+        /><br />
 
-        <label for="phone">Phone Number:</label>
-        <input type="text" id="phone" placeholder="Enter your phone number">
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Enter your name.."
+          required
+        /><br />
 
-        <label for="email">Email Address:</label>
-        <input type="email" id="email" placeholder="Enter your email address">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="Enter your email.."
+        />
 
-        <label for="address">Address:</label>
-        <input type="text" id="address" placeholder="Enter your address">
+        <label for="phone">Phone:</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="Enter your number.."
+          required
+        />
 
-        <label for="personal-info">Personal Information:</label>
-        <textarea id="personal-info" placeholder="Enter your personal details"></textarea>
+        <label for="DateOfBirth">Date Of Birth:</label>
+        <input
+          type="date"
+          id="DateOfBirth"
+          name="DateOfBirth"
+          placeholder="Enter your Date-Of-Birth.."
+          required
+        /><br />
 
+        <label for="profile-picture">Profile Picture:</label>
+        <input
+          type="file"
+          id="profile-picture"
+          name="profile-picture"
+          accept="image/*"
+          required
+        /><br />
+      </fieldset>
+
+      <fieldset>
+        <legend>Education</legend>
         <label for="education">Education:</label>
-        <textarea id="education" placeholder="Enter your education details"></textarea>
+        <textarea
+          id="education"
+          name="education"
+          rows="4"
+          placeholder="Enter your education.."
+          required
+        ></textarea
+        ><br />
+      </fieldset>
 
+      <fieldset>
+        <legend>Experience</legend>
         <label for="experience">Experience:</label>
-        <textarea id="experience" placeholder="Enter your experience details"></textarea>
+        <textarea
+          id="experience"
+          name="experience"
+          rows="4"
+          placeholder="Enter your experience.."
+          required
+        ></textarea
+        ><br />
+      </fieldset>
 
+      <fieldset>
+        <legend>Skills</legend>
         <label for="skills">Skills:</label>
-        <textarea id="skills" placeholder="Enter your skills"></textarea>
+        <textarea
+          id="skills"
+          name="skills"
+          rows="4"
+          placeholder="Enter your skills.."
+          required
+        ></textarea
+        ><br />
+      </fieldset>
 
-        <label for="certifications">Certifications:</label>
-        <textarea id="certifications" placeholder="Enter your certifications"></textarea>
+      <button type="submit"><b>Generate Resume</b></button>
+    </form>
+    <br />
 
-        <div class="buttons">
-            <button onclick="generateCV()">Generate CV</button>
-            <button onclick="downloadPDF()">Download PDF</button>
-            <button onclick="copyLink()">Copy Shareable Link</button>
-        </div>
+    <div id="resume-display" class="resume-content" contenteditable="true"></div>
+    <br />
+
+    <div id="shareable-link-container" class="shareable-link-container" style="display: none">
+      <h2>Shareable Link</h2>
+      <p>Here is the link of your resume , you can easily see and update your resume:</p>
+      <a href="#" id="shareable-link" target="_blank"></a>
+      <br />
+
+      <button id="download-pdf"><b>Download As PDF</b></button>
     </div>
-    <div id="resume-container" class="resume-container" style="display: none;">
-        <!-- Resume content will be generated here -->
-    </div>
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
